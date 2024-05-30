@@ -16,7 +16,7 @@ function App() {
   const [isSSSorted, setIsSSSorted] = useState(true);
   const [isQSSorted, setIsQSSorted] = useState(true);
   const [isReset, setIsReset] = useState(false);
-  const [unSortedArray, setUnSortedArray] = useState([8, 10, 50, 2, 10, 33, 6])
+  const [unSortedArray, setUnSortedArray] = useState([])
   const [algorithm, setAlgorithm] = useState('BubbleSort')
   // const unSortedArray = [1, 2, 2, 2, 3, 4, 5, 6, 6, 6, 9]
   // const unSortedArray = [8, 10, 50, 2, 10, 33, 6]
@@ -46,12 +46,18 @@ function App() {
 
   const handleReset = () => {
     // if(allSorted){
-      const length = Math.random() * 100
+      const max = 40;
+      const min = 50;
+      const length = Math.floor(Math.random() * (max - min + 1)) + min
       const randomArray = Random({length: length});
       setUnSortedArray(randomArray);
       setIsReset(true);
     // }
   }
+
+  useEffect(() => {
+    handleReset()
+  }, [])
 
   const allSorted = (isBSSorted && isMSSorted && isQSSorted && isSSSorted)
   useEffect(() => {
